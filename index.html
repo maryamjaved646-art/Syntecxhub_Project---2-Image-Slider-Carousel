@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Image Carousel</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+}
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px 25px;
+}
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+header p {
+    color: #666;
+    font-size: 17px;
+}
+/* Slider Container */
+.slider-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto 50px;
+}
+/* Slider */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+/* Slides */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+/* Images */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Dark overlay */
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(  to top, rgba(0, 0, 0, 0.7), transparent 60%);
+    pointer-events: none;
+}
+/* Caption */
+.caption {
+    position: absolute;
+    z-index: 2;
+    left: 50px;
+    bottom: 50px;
+    color: white;
+}
+.caption h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.caption p {
+    font-size: 18px;
+}
+/* Navigation Buttons */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 5opx;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #222;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 20;
+    pointer-events: auto;
+    transition: 0.3s;
+}
+.prev {
+    left: 20px;
+}
+.next {
+    right: 20px;
+}
+.prev:hover,
+.next:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+/* Dots */
+.dots {
+    text-align: center;
+    margin-top: 20px;
+}
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #bbb;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.dot.active {
+    width: 30px;
+    border-radius: 10px;
+    background: #333;
+}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    header h1 {
+        font-size: 28px;
+    }
+    header p {
+        font-size: 15px;
+    }
+    .slider-container {
+        width: 94%;
+    }
+    .slider {
+        height: 420px;
+        border-radius: 15px;
+    }
+    .caption {
+        left: 25px;
+        bottom: 30px;
+    }
+    .caption h2 {
+        font-size: 25px;
+    }
+    .caption p {
+        font-size: 14px;
+    }
+    .prev,
+    .next {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+    .prev {
+        left: 12px;
+    }
+    .next {
+        right: 12px;
+    }
+}
+@media (max-width: 480px) {
+    header {
+        padding-top: 25px;
+    }
+    header h1 {
+        font-size: 23px;
+    }
+    .slider {
+        height: 350px;
+    }
+    .caption h2 {
+        font-size: 21px;
+    }
+    .caption p {
+        font-size: 13px;
+    }
+}
+</style>
+<body>
+    <!--header section-->
+    <header>
+        <h1>Explore Beautiful Places</h1>
+        <p>Discover amazing destinations around the world</p>
+    </header>
+
+    <!--slider section-->
+    <section class="slider-container">
+        <div class="slider">
+            <div class="slide active">
+                  <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
+                   alt="Forest">
+                <div class="caption">
+                    <h2>Mountain Adventure</h2>
+                    <p>Experience the beauty of nature.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                     alt="Beautiful beach">
+                <div class="caption">
+                    <h2>Beautiful Beach</h2>
+                    <p>Relax beside the peaceful ocean.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+                     alt="Snowy mountains">
+                <div class="caption">
+                    <h2>Snowy Mountains</h2>
+                    <p>Enjoy a breathtaking winter view.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
+                     alt="Nature view">
+                <div class="caption">
+                    <h2>Nature Escape</h2>
+                    <p>Find peace in the beauty of nature.</p>
+                </div>
+            </div>
+
+        <!-- Previous Button -->
+        <button class="prev" onclick="changeslide(-1)">&#10094;</button>
+        <!-- Next Button -->
+        <button class="next" onclick="changeslide(1)">&#10095;</button>
+        </div>
+
+        <!-- Slide Indicators -->
+        <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div> 
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>\
